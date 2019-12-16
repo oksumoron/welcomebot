@@ -5,7 +5,7 @@ import traceback
 import sys
 from html import escape
 
-from telegram import Emoji, ParseMode, TelegramError, Update
+from telegram import Emoji, ParseMode, TelegramError, Update, MessageEntity
 from telegram.ext import Updater, MessageHandler, CommandHandler, Filters
 from telegram.ext.dispatcher import run_async
 from telegram.contrib.botan import Botan
@@ -13,8 +13,8 @@ from telegram.contrib.botan import Botan
 import python3pickledb as pickledb
 
 # Configuration
-BOTNAME = 'usernameofbot'
-TOKEN = 'TOKEN'
+BOTNAME = 'RentierWelcomeBot'
+TOKEN = '947323403:AAHZrtw8vpu8zNEHSBslp7HCFn1hnNyH8r0'
 BOTAN_TOKEN = 'BOTANTOKEN'
 
 help_text = 'Welcomes everyone that enters a group chat that this bot is a ' \
@@ -32,8 +32,7 @@ help_text = 'Welcomes everyone that enters a group chat that this bot is a ' \
             'You can use _$username_ and _$title_ as placeholders when setting' \
             ' messages. [HTML formatting]' \
             '(https://core.telegram.org/bots/api#formatting-options) ' \
-            'is also supported.\n' \
-            'Please [rate me](http://storebot.me/bot/jh0ker_welcomebot) :) '
+            'is also supported.\n'
 '''
 Create database object
 Database schema:
@@ -112,8 +111,8 @@ def welcome(bot, update):
                   % Emoji.GRINNING_FACE_WITH_SMILING_EYES
 
     # Replace placeholders and send message
-    text = text.replace('$username',
-                        message.new_chat_member.first_name)\
+    text = text.replace('$username','<a href="tg://user?id={}">{}</a>'.format(
+                        message.new_chat_member.id,message.new_chat_member.first_name))\
         .replace('$title', message.chat.title)
     send_async(bot, chat_id=chat_id, text=text, parse_mode=ParseMode.HTML)
 

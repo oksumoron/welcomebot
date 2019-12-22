@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import logging
 import random
+from datetime import timezone, tzinfo, datetime, timedelta
 from time import sleep
 import traceback
 import sys
@@ -18,10 +19,10 @@ import python3pickledb as pickledb
 BOTNAME = 'RentierWelcomeBot'
 TOKEN = '947323403:AAHZrtw8vpu8zNEHSBslp7HCFn1hnNyH8r0'
 BOTAN_TOKEN = 'BOTANTOKEN'
-REQUEST_KWARGS={
+#REQUEST_KWARGS={
     # "USERNAME:PASSWORD@" is optional, if you need authentication:
-    'proxy_url': 'https://136.243.14.107:8090',
-}
+    #'proxy_url': 'https://136.243.14.107:8090',
+#}
 #https://173.249.42.83:3128
 #https://136.243.14.107:8090
 #http://207.154.231.212:1080
@@ -365,12 +366,29 @@ def empty_message(bot, update):
             return goodbye(bot, update)
 
 
+USERS_AND_TIMEZONES = {"205459208": ["Kseniya", "Europe/Moscow"],
+                       "818120570": ["Maybe", "Europe/Bucharest"],
+                     }
+import pytz
 def bis_bald(bot, update):
     chats = db.get('chats')
     if update.message.chat.id not in chats:
         chats.append(update.message.chat.id)
         db.set('chats', chats)
         logger.info("I have been added to %d chats" % len(chats))
+    logger.info("id: {}, name: {}".format(update.message.from_user.id, update.message.from_user.first_name))
+    """users = []
+    for us in USERS_AND_TIMEZONES:
+        # datetime(2019, 12, 22, 18, 25, tzinfo=timezone.utc)
+        tz = pytz.timezone(USERS_AND_TIMEZONES[us][1])
+        need = datetime(2019, 12, 22, 22, 20, tzinfo=timezone.utc).strftime("%d.%m.%Y %H:%M")
+        current = datetime.now(tz).strftime("%d.%m.%Y %H:%M")
+        if need <= current:
+            logger.info("got it")
+            users.append(us)
+    if len(users) >= 0:
+        return congrats(bot, update, "{}, test!", users)"""
+
     """if update.message.text is not None:
         if "bis" in update.message.text.lower() and "bald" in update.message.text.lower():
             msgs = ["Bis bald you back, {}", "Bis bald you too, {}", emojize("I heard someone said bis bald? :clown_face:"),
@@ -386,6 +404,18 @@ def echo(bot, update, msg):
     # Replace placeholders and send message
     text = msg.format('<a href="tg://user?id={}">{}</a>'.format(
         message.from_user.id, message.from_user.first_name))
+    send_async(bot, chat_id=chat_id, text=text, parse_mode=ParseMode.HTML)
+
+
+def congrats(bot, update, msg, users):
+    message = update.message
+    chat_id = message.chat.id
+
+    # Replace placeholders and send message
+    dmslckm = []
+    for user in users:
+        dmslckm.append('<a href="tg://user?id={}">{}</a>'.format(user, USERS_AND_TIMEZONES[user][0]))
+    text = msg.format(", ".join(dmslckm))
     send_async(bot, chat_id=chat_id, text=text, parse_mode=ParseMode.HTML)
 
 
@@ -428,7 +458,8 @@ def stats(bot, update, **kwargs):
 
 def main():
     # Create the Updater and pass it your bot's token.
-    updater = Updater(TOKEN, workers=10, request_kwargs=REQUEST_KWARGS)
+    #updater = Updater(TOKEN, workers=10, request_kwargs=REQUEST_KWARGS)
+    updater = Updater(TOKEN, workers=10)
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
@@ -445,7 +476,7 @@ def main():
     dp.add_handler(CommandHandler("unquiet", unquiet))
 
     dp.add_handler(MessageHandler([Filters.status_update], empty_message))
-    dp.add_handler(MessageHandler([Filters.group], bis_bald))
+    dp.add_handler(MessageHandler(Filters.group, bis_bald))
     #dp.add_handler(MessageHandler([Filters.text], stats))
 
     dp.add_error_handler(error)

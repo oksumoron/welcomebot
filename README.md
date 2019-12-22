@@ -6,8 +6,8 @@ It uses the [python-telegram-bot](https://github.com/python-telegram-bot/python-
 The file is prepared to be run by anyone by filling out the blanks in the configuration. The bot currently runs on [@jh0ker_welcomebot](https://telegram.me/jh0ker_welcomebot)
 
 ## Required
-* Python 3.4 (may work with earlier versions, untested)
-* [python-telegram-bot](https://github.com/leandrotoledo/python-telegram-bot) module (tested with version 5.1.1)
+* Python 3.7 (may work with earlier versions, untested)
+* [python-telegram-bot](https://github.com/leandrotoledo/python-telegram-bot) module (tested with version 11.1.0)
 
 ## How to use
 * Clone the repo

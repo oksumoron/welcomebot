@@ -64,7 +64,7 @@ if not db.get('chats'):
 root = logging.getLogger()
 root.setLevel(logging.INFO)
 
-logging.basicConfig(level=logging.INFO,
+logging.basicConfig(level=logging.INFO, filename='example.log',
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 logger = logging.getLogger(__name__)

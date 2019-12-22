@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 import logging
+import random
 from time import sleep
 import traceback
 import sys
 from html import escape
 
-from telegram import Emoji, ParseMode, TelegramError, Update, MessageEntity
+from telegram import ParseMode, TelegramError, Update, MessageEntity
 from telegram.ext import Updater, MessageHandler, CommandHandler, Filters
 from telegram.ext.dispatcher import run_async
-from telegram.contrib.botan import Botan
+from emoji import emojize
+#from telegram.contrib.botan import Botan
 
 import python3pickledb as pickledb
 
@@ -16,6 +18,13 @@ import python3pickledb as pickledb
 BOTNAME = 'RentierWelcomeBot'
 TOKEN = '947323403:AAHZrtw8vpu8zNEHSBslp7HCFn1hnNyH8r0'
 BOTAN_TOKEN = 'BOTANTOKEN'
+REQUEST_KWARGS={
+    # "USERNAME:PASSWORD@" is optional, if you need authentication:
+    'proxy_url': 'https://136.243.14.107:8090',
+}
+#https://173.249.42.83:3128
+#https://136.243.14.107:8090
+#http://207.154.231.212:1080
 
 help_text = 'Welcomes everyone that enters a group chat that this bot is a ' \
             'part of. By default, only the person who invited the bot into ' \
@@ -62,7 +71,7 @@ logger = logging.getLogger(__name__)
 
 @run_async
 def send_async(bot, *args, **kwargs):
-    bot.sendMessage(*args, **kwargs);
+    bot.sendMessage(*args, **kwargs)
 
 
 def check(bot, update, override_lock=None):
@@ -98,7 +107,7 @@ def welcome(bot, update):
     message = update.message
     chat_id = message.chat.id
     logger.info('%s joined to chat %d (%s)'
-                 % (escape(message.new_chat_member.first_name),
+                 % (escape(message.new_chat_members[0].first_name),
                     chat_id,
                     escape(message.chat.title)))
 
@@ -108,11 +117,11 @@ def welcome(bot, update):
     # Use default message if there's no custom one set
     if text is None:
         text = 'Hello $username! Welcome to $title %s' \
-                  % Emoji.GRINNING_FACE_WITH_SMILING_EYES
+                  % emojize(":grinning_face_with_smiling_eyes:")
 
     # Replace placeholders and send message
     text = text.replace('$username','<a href="tg://user?id={}">{}</a>'.format(
-                        message.new_chat_member.id,message.new_chat_member.first_name))\
+                        message.new_chat_members[0].id,message.new_chat_members[0].first_name))\
         .replace('$title', message.chat.title)
     send_async(bot, chat_id=chat_id, text=text, parse_mode=ParseMode.HTML)
 
@@ -165,7 +174,7 @@ def introduce(bot, update):
     text = 'Hello %s! I will now greet anyone who joins this chat with a' \
            ' nice message %s \nCheck the /help command for more info!'\
            % (update.message.chat.title,
-              Emoji.GRINNING_FACE_WITH_SMILING_EYES)
+              emojize(":grinning_face_with_smiling_eyes:"))
     send_async(bot, chat_id=chat_id, text=text)
 
 
@@ -194,7 +203,7 @@ def set_welcome(bot, update, args):
         return
 
     # Split message into words and remove mentions of the bot
-    message = ' '.join(args)
+    message = ' '.join(args).replace("\\n", "\n")
 
     # Only continue if there's a message
     if not message:
@@ -249,6 +258,21 @@ def disable_goodbye(bot, update):
 
     # Disable goodbye message
     db.set(str(chat_id) + '_bye', False)
+
+    send_async(bot, chat_id=chat_id, text='Got it!')
+
+
+def enable_goodbye(bot, update):
+    """ Disables the goodbye message """
+
+    chat_id = update.message.chat.id
+
+    # Check admin privilege and group context
+    if not check(bot, update):
+        return
+
+    # Disable goodbye message
+    db.set(str(chat_id) + '_bye', True)
 
     send_async(bot, chat_id=chat_id, text='Got it!')
 
@@ -327,9 +351,9 @@ def empty_message(bot, update):
         db.set('chats', chats)
         logger.info("I have been added to %d chats" % len(chats))
 
-    if update.message.new_chat_member is not None:
+    if len(update.message.new_chat_members) > 0:
         # Bot was added to a group chat
-        if update.message.new_chat_member.username == BOTNAME:
+        if update.message.new_chat_members[0].username == BOTNAME:
             return introduce(bot, update)
         # Another user joined the chat
         else:
@@ -340,6 +364,29 @@ def empty_message(bot, update):
         if update.message.left_chat_member.username != BOTNAME:
             return goodbye(bot, update)
 
+
+def bis_bald(bot, update):
+    chats = db.get('chats')
+    if update.message.chat.id not in chats:
+        chats.append(update.message.chat.id)
+        db.set('chats', chats)
+        logger.info("I have been added to %d chats" % len(chats))
+    """if update.message.text is not None:
+        if "bis" in update.message.text.lower() and "bald" in update.message.text.lower():
+            msgs = ["Bis bald you back, {}", "Bis bald you too, {}", emojize("I heard someone said bis bald? :clown_face:"),
+                    emojize("{}, bis bald is forbidden in this chat! :angry_face:")]
+            return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])"""
+    pass
+
+
+def echo(bot, update, msg):
+    message = update.message
+    chat_id = message.chat.id
+
+    # Replace placeholders and send message
+    text = msg.format('<a href="tg://user?id={}">{}</a>'.format(
+        message.from_user.id, message.from_user.first_name))
+    send_async(bot, chat_id=chat_id, text=text, parse_mode=ParseMode.HTML)
 
 
 def error(bot, update, error, **kwargs):
@@ -363,7 +410,7 @@ def error(bot, update, error, **kwargs):
         pass
 
 
-botan = None
+"""botan = None
 if BOTAN_TOKEN != 'BOTANTOKEN':
     botan = Botan(BOTAN_TOKEN)
 
@@ -376,11 +423,12 @@ def stats(bot, update, **kwargs):
         logger.debug("Tracking with botan.io successful")
     else:
         logger.info("Tracking with botan.io failed")
+        """
 
 
 def main():
     # Create the Updater and pass it your bot's token.
-    updater = Updater(TOKEN, workers=10)
+    updater = Updater(TOKEN, workers=10, request_kwargs=REQUEST_KWARGS)
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
@@ -390,13 +438,15 @@ def main():
     dp.add_handler(CommandHandler('welcome', set_welcome, pass_args=True))
     dp.add_handler(CommandHandler('goodbye', set_goodbye, pass_args=True))
     dp.add_handler(CommandHandler('disable_goodbye', disable_goodbye))
+    dp.add_handler(CommandHandler('enable_goodbye', enable_goodbye))
     dp.add_handler(CommandHandler("lock", lock))
     dp.add_handler(CommandHandler("unlock", unlock))
     dp.add_handler(CommandHandler("quiet", quiet))
     dp.add_handler(CommandHandler("unquiet", unquiet))
 
     dp.add_handler(MessageHandler([Filters.status_update], empty_message))
-    dp.add_handler(MessageHandler([Filters.text], stats))
+    dp.add_handler(MessageHandler([Filters.group], bis_bald))
+    #dp.add_handler(MessageHandler([Filters.text], stats))
 
     dp.add_error_handler(error)
 

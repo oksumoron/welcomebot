@@ -18,6 +18,9 @@ import python3pickledb as pickledb
 # Configuration
 BOTNAME = 'RentierWelcomeBot'
 TOKEN = '947323403:AAHZrtw8vpu8zNEHSBslp7HCFn1hnNyH8r0'
+
+#BOTNAME = "RentierTestbot"
+#TOKEN = "1009498009:AAFFWigzgO8-nebkQvEYj_5jfXkwuGPokg8"
 BOTAN_TOKEN = 'BOTANTOKEN'
 #REQUEST_KWARGS={
     # "USERNAME:PASSWORD@" is optional, if you need authentication:
@@ -366,9 +369,35 @@ def empty_message(bot, update):
             return goodbye(bot, update)
 
 
-USERS_AND_TIMEZONES = {"205459208": ["Kseniya", "Europe/Moscow"],
-                       "818120570": ["Maybe", "Europe/Bucharest"],
-                     }
+USERS_AND_TIMEZONES = [{"id": 205459208, "name": "Kseniya", "tz": "Europe/Moscow"},
+                       {"id": 818120570, "name": "Maybe", "tz":"Europe/Bucharest"},
+                       {"id": 217474162, "name": "Stazyros", "tz": "Europe/Moscow"},
+
+                       #id: 750432187, name: Shakhnaz
+                       #id: 850842867, name: Olga
+                       #id: 984037790, name: Julia
+                       #id: 909049413, name: Angelika
+                       #id: 1052078964, name: ess
+                       # id: 60815732, name: Söph
+                       #id: 1032883707, name: Haven
+                       #id: 1065439413, name: t.b.p.f (Este)
+                       #id: 918544312, name: Allie
+                       # id: 865543531, name: Priscilla
+                       # id: 819800093, name: Lea
+                       #id: 933314516, name: Nika
+                       #id: 999159684, name: Steph
+                       #id: 843754913, name: Harper
+                       #id: 903096807, name: nadine (tirpse)
+                        #id: 234021809, name: A. B.
+                       #id: 986930541, name: Lou
+                       #id: 312356585, name: Lily
+                       #id: 443578761, name: Sveta
+                        #id: 390886378, name: Rose
+                       #id: 938002879, name: blue
+                       #id: 906207913, name: Flora
+                       #id: 818329880, name: Michi
+                       #id: 877331016, name: Marijke
+                     ]
 import pytz
 def bis_bald(bot, update):
     chats = db.get('chats')
@@ -389,12 +418,50 @@ def bis_bald(bot, update):
     if len(users) >= 0:
         return congrats(bot, update, "{}, test!", users)"""
 
-    """if update.message.text is not None:
+    if update.message.text is not None:
         if "bis" in update.message.text.lower() and "bald" in update.message.text.lower():
             msgs = ["Bis bald you back, {}", "Bis bald you too, {}", emojize("I heard someone said bis bald? :clown_face:"),
-                    emojize("{}, bis bald is forbidden in this chat! :angry_face:")]
-            return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])"""
-    pass
+                    emojize("{}, bis bald is forbidden in this chat! :angry_face:"),
+                    emojize("{}, :police_car_light:")]
+            return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])
+        if "season 5" in update.message.text.lower() or "s5" in update.message.text.lower():
+            msgs = ["RENTIER FOR SEASON 5!!!",
+                    emojize("Season 5? I can smell it :clown_face:"),
+                    "{}, are you sure?",
+                    emojize("Knowledge is so much more valuable than weed, more valuable than haze, even more than unbelievably strong DMT... But I don't know anything about season 5 :sad_but_relieved_face:")]
+            return echo(bot, update, msgs[random.randint(0, len(msgs) - 1)])
+        if "sad" in update.message.text.lower():
+            msgs = ['Who said "sad"? I\'m calling positive police! <a href="tg://user?id={}">{}</a>'.format(818120570, "Maybe"),
+                    emojize("Wee woo wee woo! :oncoming_police_car:"),
+                    "{}, this is the positive police, we don't use word \"sad\" in this chat"]
+            return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])
+        if "family" in update.message.text.lower():
+            msgs = [emojize('That\'s right, we\'re all family here :red_heart:')]
+            return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])
+
+        if "wtfock" in update.message.text.lower():
+            return send_sticker(bot, update)
+
+        if "daddy" in update.message.text.lower():
+            msgs = [emojize('{}, papa')]
+            return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])
+
+        if "bjorn" in update.message.text.lower() or "bj*rn" in update.message.text.lower() or "björn" in update.message.text.lower():
+            msgs = [emojize('Ugh, Bj*rn :face_vomiting:')]
+            return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])
+
+        if "rentier" in update.message.text.lower():
+            msgs = [emojize('Psss, want some weed?'),
+                    "Someone's called me?",
+                    "{}, password?",
+                    "{}, listen, every person is an island.",
+                    "{}, coffee?",
+                    "Yeah?"]
+            return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])
+
+        characters = ["Matteo", "Jonas", "David", "Abdi", "Carlos", "Omar", "Essam", "Mohammed", "Stefan",
+                      "Hanna", "Kiki", "Sam", "Mia", "Amira", "Alex", "Sara", "Leonie", "Laura", "Hans",
+                      "Linn"]
 
 
 def echo(bot, update, msg):
@@ -405,6 +472,14 @@ def echo(bot, update, msg):
     text = msg.format('<a href="tg://user?id={}">{}</a>'.format(
         message.from_user.id, message.from_user.first_name))
     send_async(bot, chat_id=chat_id, text=text, parse_mode=ParseMode.HTML)
+
+
+def send_sticker(bot, update):
+    message = update.message
+    chat_id = message.chat.id
+    sset = bot.get_sticker_set("Druckfamilyquotes")
+    bot.send_sticker(chat_id, sset.stickers[19])
+    pass
 
 
 def congrats(bot, update, msg, users):

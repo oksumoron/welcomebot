@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
+import configparser
 import logging
 import random
 from datetime import timezone, tzinfo, datetime, timedelta
+from os.path import dirname, realpath, join
 from time import sleep
 import traceback
 import sys
@@ -16,12 +18,18 @@ from emoji import emojize
 import python3pickledb as pickledb
 
 # Configuration
-BOTNAME = 'RentierWelcomeBot'
-TOKEN = 'token'
 
-#BOTNAME = "RentierTestbot"
-#TOKEN = "token"
+def get_settings(block, name):
+    rootdir = dirname(realpath(__file__))
+    settings = configparser.ConfigParser()
+    settings.read(join(rootdir, 'token.ini'))
+    return settings.get(block, name)
+
+
+BOTNAME = get_settings("Bot", "name")
+TOKEN = get_settings("Bot", "token")
 BOTAN_TOKEN = 'BOTANTOKEN'
+
 #REQUEST_KWARGS={
     # "USERNAME:PASSWORD@" is optional, if you need authentication:
     #'proxy_url': 'https://136.243.14.107:8090',
@@ -398,6 +406,7 @@ USERS_AND_TIMEZONES = [{"id": 205459208, "name": "Kseniya", "tz": "Europe/Moscow
                        #id: 818329880, name: Michi
                        #id: 877331016, name: Marijke
                        #id: 841877693, name: Sarah
+                       #id: 843009397, name: Franzi
                      ]
 import pytz
 def bis_bald(bot, update):
@@ -422,6 +431,9 @@ def bis_bald(bot, update):
     if update.message.text is not None:
         msg = update.message.text.lower()
         christmas_message = emojize("Merry Christmas, druck family! :Santa_Claus:")
+        characters = ["Matteo", "Jonas", "David", "Abdi", "Carlos", "Omar", "Essam", "Mohammed", "Stefan",
+                      "Hanna", "Kiki", "Sam", "Mia", "Amira", "Alex", "Sara", "Leonie", "Laura", "Hans",
+                      "Linn", "Rentier"]
         if msg == "so, this is my little xmas gift for you :)":
             return echo(bot, update, christmas_message)
         if "bis" in msg and "bald" in msg:
@@ -430,10 +442,11 @@ def bis_bald(bot, update):
                     emojize("{}, :police_car_light:")]
             return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])
         if "season 5" in msg or "s5" in msg:
-            msgs = ["RENTIER FOR SEASON 5!!!",
+            msgs = ["{} FOR SEASON 5!!!".format(characters[random.randint(0, len(characters) - 1)]).upper(),
                     emojize("Season 5? I can smell it :clown_face:"),
                     "{}, are you sure?",
-                    emojize("Knowledge is so much more valuable than weed, more valuable than haze, even more than unbelievably strong DMT... But I don't know anything about season 5 :sad_but_relieved_face:")]
+                    emojize("Knowledge is so much more valuable than weed, more valuable than haze, even more than unbelievably strong DMT... But I don't know anything about season 5 :sad_but_relieved_face:")
+                    ]
             return echo(bot, update, msgs[random.randint(0, len(msgs) - 1)])
         if "sad" in msg:
             msgs = ['Who said "sad"? I\'m calling positive police! <a href="tg://user?id={}">{}</a>'.format(818120570, "Maybe"),
@@ -478,10 +491,6 @@ def bis_bald(bot, update):
 
         if "superior" in msg:
             return send_sticker(bot, update, bot.get_sticker_set("water81818").stickers[10], True)
-
-        characters = ["Matteo", "Jonas", "David", "Abdi", "Carlos", "Omar", "Essam", "Mohammed", "Stefan",
-                      "Hanna", "Kiki", "Sam", "Mia", "Amira", "Alex", "Sara", "Leonie", "Laura", "Hans",
-                      "Linn"]
 
 
 def echo(bot, update, msg, reply=False):

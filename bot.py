@@ -491,6 +491,8 @@ def bis_bald(bot, update):
                     "{}, listen, every person is an island.",
                     "{}, coffee?",
                     "Yeah?"]
+            if update.message.from_user.id == 909049413:
+                msgs.append(emojize("{}, I know you don't like me, but I like you and that's enough! :red_heart:"))
             return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])
 
         if "reindeer" == msg:

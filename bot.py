@@ -17,10 +17,10 @@ import python3pickledb as pickledb
 
 # Configuration
 BOTNAME = 'RentierWelcomeBot'
-TOKEN = '947323403:AAHZrtw8vpu8zNEHSBslp7HCFn1hnNyH8r0'
+TOKEN = 'token'
 
 #BOTNAME = "RentierTestbot"
-#TOKEN = "1009498009:AAFFWigzgO8-nebkQvEYj_5jfXkwuGPokg8"
+#TOKEN = "token"
 BOTAN_TOKEN = 'BOTANTOKEN'
 #REQUEST_KWARGS={
     # "USERNAME:PASSWORD@" is optional, if you need authentication:
@@ -397,6 +397,7 @@ USERS_AND_TIMEZONES = [{"id": 205459208, "name": "Kseniya", "tz": "Europe/Moscow
                        #id: 906207913, name: Flora
                        #id: 818329880, name: Michi
                        #id: 877331016, name: Marijke
+                       #id: 841877693, name: Sarah
                      ]
 import pytz
 def bis_bald(bot, update):
@@ -419,38 +420,50 @@ def bis_bald(bot, update):
         return congrats(bot, update, "{}, test!", users)"""
 
     if update.message.text is not None:
-        if "bis" in update.message.text.lower() and "bald" in update.message.text.lower():
+        msg = update.message.text.lower()
+        christmas_message = emojize("Merry Christmas, druck family! :Santa_Claus:")
+        if msg == "so, this is my little xmas gift for you :)":
+            return echo(bot, update, christmas_message)
+        if "bis" in msg and "bald" in msg:
             msgs = ["Bis bald you back, {}", "Bis bald you too, {}", emojize("I heard someone said bis bald? :clown_face:"),
                     emojize("{}, bis bald is forbidden in this chat! :angry_face:"),
                     emojize("{}, :police_car_light:")]
             return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])
-        if "season 5" in update.message.text.lower() or "s5" in update.message.text.lower():
+        if "season 5" in msg or "s5" in msg:
             msgs = ["RENTIER FOR SEASON 5!!!",
                     emojize("Season 5? I can smell it :clown_face:"),
                     "{}, are you sure?",
                     emojize("Knowledge is so much more valuable than weed, more valuable than haze, even more than unbelievably strong DMT... But I don't know anything about season 5 :sad_but_relieved_face:")]
             return echo(bot, update, msgs[random.randint(0, len(msgs) - 1)])
-        if "sad" in update.message.text.lower():
+        if "sad" in msg:
             msgs = ['Who said "sad"? I\'m calling positive police! <a href="tg://user?id={}">{}</a>'.format(818120570, "Maybe"),
                     emojize("Wee woo wee woo! :oncoming_police_car:"),
                     "{}, this is the positive police, we don't use word \"sad\" in this chat"]
             return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])
-        if "family" in update.message.text.lower():
+        if "family" in msg and "chat" in msg:
             msgs = [emojize('That\'s right, we\'re all family here :red_heart:')]
             return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])
 
-        if "wtfock" in update.message.text.lower():
-            return send_sticker(bot, update)
+        if "lonely" in msg:
+            return echo(bot, update, "Lonely like island Ibiza", reply=True)
 
-        if "daddy" in update.message.text.lower():
-            msgs = [emojize('{}, papa')]
-            return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])
+        if "wtfock" in msg:
+            return send_sticker(bot, update, bot.get_sticker_set("Druckfamilyquotes").stickers[19], True)
 
-        if "bjorn" in update.message.text.lower() or "bj*rn" in update.message.text.lower() or "björn" in update.message.text.lower():
+        if "daddy" in msg:
+            msgs = [emojize('{}, papa'), emojize("Papa :index_pointing_up:"),
+                    "You need to stop using word \"daddy\", otherwise you'll become lonely. And other things will become your friends."]
+            return echo(bot, update, msgs[random.randint(0, len(msgs)-1)], reply=True)
+
+        if "bjorn" in msg or "bj*rn" in msg or "björn" in msg:
             msgs = [emojize('Ugh, Bj*rn :face_vomiting:')]
             return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])
 
-        if "rentier" in update.message.text.lower():
+        if "missing" in msg and "hours" in msg:
+            msgs = [emojize('Agree'), "Always.", "Every hour is missing {} hour".format(msg.split("missing ")[1].split(" hours")[0])]
+            return echo(bot, update, msgs[random.randint(0, len(msgs)-1)], reply=True)
+
+        if ("rentier" in msg and not bot.name.lower() in msg) or (msg == bot.name.lower()): #exclude mention
             msgs = [emojize('Psss, want some weed?'),
                     "Someone's called me?",
                     "{}, password?",
@@ -459,27 +472,39 @@ def bis_bald(bot, update):
                     "Yeah?"]
             return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])
 
+        if "reindeer" == msg:
+            msgs = ["{}, I changed this password 3 months ago."]
+            return echo(bot, update, msgs[random.randint(0, len(msgs) - 1)])
+
+        if "superior" in msg:
+            return send_sticker(bot, update, bot.get_sticker_set("water81818").stickers[10], True)
+
         characters = ["Matteo", "Jonas", "David", "Abdi", "Carlos", "Omar", "Essam", "Mohammed", "Stefan",
                       "Hanna", "Kiki", "Sam", "Mia", "Amira", "Alex", "Sara", "Leonie", "Laura", "Hans",
                       "Linn"]
 
 
-def echo(bot, update, msg):
+def echo(bot, update, msg, reply=False):
     message = update.message
     chat_id = message.chat.id
 
     # Replace placeholders and send message
     text = msg.format('<a href="tg://user?id={}">{}</a>'.format(
         message.from_user.id, message.from_user.first_name))
-    send_async(bot, chat_id=chat_id, text=text, parse_mode=ParseMode.HTML)
+    if reply:
+        send_async(bot, chat_id=chat_id, text=text, parse_mode=ParseMode.HTML, reply_to_message_id=message.message_id)
+    else:
+        send_async(bot, chat_id=chat_id, text=text, parse_mode=ParseMode.HTML)
 
 
-def send_sticker(bot, update):
+def send_sticker(bot, update, sticker, reply=False):
     message = update.message
     chat_id = message.chat.id
-    sset = bot.get_sticker_set("Druckfamilyquotes")
-    bot.send_sticker(chat_id, sset.stickers[19])
-    pass
+    #sset = bot.get_sticker_set("Druckfamilyquotes")
+    if reply:
+        bot.send_sticker(chat_id, sticker, reply_to_message_id=message.message_id)
+    else:
+        bot.send_sticker(chat_id, sticker)
 
 
 def congrats(bot, update, msg, users):

@@ -437,15 +437,23 @@ def bis_bald(bot, update):
         if msg == "so, this is my little xmas gift for you :)":
             return echo(bot, update, christmas_message)
         if "bis" in msg and "bald" in msg:
-            msgs = ["Bis bald you back, {}", "Bis bald you too, {}", emojize("I heard someone said bis bald? :clown_face:"),
-                    emojize("{}, bis bald is forbidden in this chat! :angry_face:"),
+            msgs = [emojize("Bis bald you back, {} :red_heart:"), #"Bis bald you too, {}", emojize("I heard someone said bis bald? :clown_face:"),
+                    #emojize("{}, bis bald is forbidden in this chat! :angry_face:"),
                     emojize("{}, :police_car_light:")]
+            return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])
+        if "sommer 2020" in msg or "summer 2020":
+            msgs = ["{}, can summer come already?!", #emojize("I heard someone said bis bald? :clown_face:"),
+                    emojize("Summer 2020? Can't wait! :smiling_face_with_smiling_eyes:"),
+                    #emojize("{}, bis bald is forbidden in this chat! :angry_face:"),
+                   emojize("{}, :police_car_light: :police_car_light: :police_car_light:")]
             return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])
         if "season 5" in msg or "s5" in msg:
             msgs = ["{} FOR SEASON 5!!!".format(characters[random.randint(0, len(characters) - 1)]).upper(),
-                    emojize("Season 5? I can smell it :clown_face:"),
-                    "{}, are you sure?",
-                    emojize("Knowledge is so much more valuable than weed, more valuable than haze, even more than unbelievably strong DMT... But I don't know anything about season 5 :sad_but_relieved_face:")
+                    emojize("YAAAY season 5! :partying_face:"),
+                    ""
+                   # emojize("Season 5? I can smell it :clown_face:"),
+                   # "{}, are you sure?",
+                   # emojize("Knowledge is so much more valuable than weed, more valuable than haze, even more than unbelievably strong DMT... But I don't know anything about season 5 :sad_but_relieved_face:")
                     ]
             return echo(bot, update, msgs[random.randint(0, len(msgs) - 1)])
         if "sad" in msg:

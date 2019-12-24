@@ -441,7 +441,7 @@ def bis_bald(bot, update):
                     #emojize("{}, bis bald is forbidden in this chat! :angry_face:"),
                     emojize("{}, :police_car_light:")]
             return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])
-        if "sommer 2020" in msg or "summer 2020":
+        if "sommer 2020" in msg or "summer 2020" in msg:
             msgs = ["{}, can summer come already?!", #emojize("I heard someone said bis bald? :clown_face:"),
                     emojize("Summer 2020? Can't wait! :smiling_face_with_smiling_eyes:"),
                     #emojize("{}, bis bald is forbidden in this chat! :angry_face:"),

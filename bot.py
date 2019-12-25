@@ -439,6 +439,11 @@ def bis_bald(bot, update):
             date_now = datetime.now(tz=timezone.utc)
             days = (date_from - date_now).days
             return echo(bot, update, "Days until druck: {}".format(days))
+
+        if bot.name.lower() in msg and "coffee" in msg:
+            photo = join(dirname(realpath(__file__)), "resources", "photos", "rentier_coffee.jpg")
+            bot.send_photo(update.message.chat.id, open(photo, 'rb'), "Here!",
+                           reply_to_message=update.message.message_id)
         if "bis" in msg and "bald" in msg:
             msgs = [emojize("Bis bald you back, {} :red_heart:"), #"Bis bald you too, {}", emojize("I heard someone said bis bald? :clown_face:"),
                     #emojize("{}, bis bald is forbidden in this chat! :angry_face:"),
@@ -509,6 +514,16 @@ def bis_bald(bot, update):
 
         if "superior" in msg:
             return send_sticker(bot, update, bot.get_sticker_set("water81818").stickers[10], True)
+
+        if update.message.reply_to_message is not None:
+            if update.message.reply_to_message.from_user.id == 1009498009:
+                if "coffee" in update.message.reply_to_message.text.lower() and "yes" in update.message.text.lower():
+                    photo = join(dirname(realpath(__file__)), "resources", "photos", "rentier_coffee.jpg")
+                    bot.send_photo(update.message.chat.id, open(photo, 'rb'), "Here!", reply_to_message=update.message.message_id)
+                if "coffee" in update.message.reply_to_message.text.lower() and "no" in update.message.text.lower():
+                    return echo(bot, update, 'Okay, maybe some tea then?', reply=True)
+
+                    #send_photo(chat_id, photo, caption=None, disable_notification=False, reply_to_message_id=None, reply_markup=None, timeout=20, parse_mode=None, **kwargs)
 
 
 def echo(bot, update, msg, reply=False):

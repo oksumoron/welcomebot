@@ -430,12 +430,15 @@ def bis_bald(bot, update):
 
     if update.message.text is not None:
         msg = update.message.text.lower()
-        christmas_message = emojize("Merry Christmas, druck family! :Santa_Claus:")
-        characters = ["Matteo", "Jonas", "David", "Abdi", "Carlos", "Omar", "Essam", "Mohammed", "Stefan",
-                      "Hanna", "Kiki", "Sam", "Mia", "Amira", "Alex", "Sara", "Leonie", "Laura", "Hans",
+        characters = ["Jonas", "David", "Abdi", "Carlos", "Omar", "Essam", "Mohammed", "Stefan",
+                      "Kiki", "Sam", "Alex", "Sara", "Leonie", "Laura", "Hans",
                       "Linn", "Rentier"]
-        if msg == "so, this is my little xmas gift for you :)":
-            return echo(bot, update, christmas_message)
+        mains = ["Matteo", "Hanna", "Mia", "Amira"]
+        date_from = datetime(2020, 6, 22, 13, 0, tzinfo=timezone.utc)
+        if bot.name.lower() in msg and ("days till" in msg or "days until" in msg) and ("druck" in msg or "season 5" in msg):
+            date_now = datetime.now(tz=timezone.utc)
+            days = (date_from - date_now).days
+            return echo(bot, update, "Days until druck: {}".format(days))
         if "bis" in msg and "bald" in msg:
             msgs = [emojize("Bis bald you back, {} :red_heart:"), #"Bis bald you too, {}", emojize("I heard someone said bis bald? :clown_face:"),
                     #emojize("{}, bis bald is forbidden in this chat! :angry_face:"),
@@ -450,11 +453,14 @@ def bis_bald(bot, update):
         if "season 5" in msg or "s5" in msg:
             msgs = ["{} FOR SEASON 5!!!".format(characters[random.randint(0, len(characters) - 1)]).upper(),
                     emojize("YAAAY season 5! :partying_face:"),
-                    ""
+                    "Season 5... Imagine...",
                    # emojize("Season 5? I can smell it :clown_face:"),
                    # "{}, are you sure?",
-                   # emojize("Knowledge is so much more valuable than weed, more valuable than haze, even more than unbelievably strong DMT... But I don't know anything about season 5 :sad_but_relieved_face:")
-                    ]
+                   emojize("Knowledge is so much more valuable than weed, more valuable than haze, even more than unbelievably strong DMT... But I don't know who will be season 5 main :sad_but_relieved_face:")
+                   ]
+            return echo(bot, update, msgs[random.randint(0, len(msgs) - 1)])
+        if "new gen" in msg or "new generation" in msg:
+            msgs = ["{}, fingers crossed"]
             return echo(bot, update, msgs[random.randint(0, len(msgs) - 1)])
         if "sad" in msg:
             msgs = ['Who said "sad"? I\'m calling positive police! <a href="tg://user?id={}">{}</a>'.format(818120570, "Maybe"),
@@ -493,6 +499,8 @@ def bis_bald(bot, update):
                     "Yeah?"]
             if update.message.from_user.id == 909049413:
                 msgs.append(emojize("{}, I know you don't like me, but I like you and that's enough! :red_heart:"))
+                msgs.append(emojize("Why you don't like me, {}? :disappointed_face:"))
+                msgs.append("I'm here to annoy Angelika")
             return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])
 
         if "reindeer" == msg:

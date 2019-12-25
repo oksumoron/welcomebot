@@ -516,7 +516,7 @@ def bis_bald(bot, update):
             return send_sticker(bot, update, bot.get_sticker_set("water81818").stickers[10], True)
 
         if update.message.reply_to_message is not None:
-            if update.message.reply_to_message.from_user.id == 1009498009:
+            if update.message.reply_to_message.from_user.id == bot.id:
                 if "coffee" in update.message.reply_to_message.text.lower() and "yes" in update.message.text.lower():
                     photo = join(dirname(realpath(__file__)), "resources", "photos", "rentier_coffee.jpg")
                     bot.send_photo(update.message.chat.id, open(photo, 'rb'), "Here!", reply_to_message=update.message.message_id)

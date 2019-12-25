@@ -462,7 +462,7 @@ def bis_bald(bot, update):
         if "new gen" in msg or "new generation" in msg:
             msgs = ["{}, fingers crossed"]
             return echo(bot, update, msgs[random.randint(0, len(msgs) - 1)])
-        if "sad" in msg:
+        if "sad" in msg or "traurigkeit":
             msgs = ['Who said "sad"? I\'m calling positive police! <a href="tg://user?id={}">{}</a>'.format(818120570, "Maybe"),
                     emojize("Wee woo wee woo! :oncoming_police_car:"),
                     "{}, this is the positive police, we don't use word \"sad\" in this chat"]

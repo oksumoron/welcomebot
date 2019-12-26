@@ -481,7 +481,7 @@ def bis_bald(bot, update):
         if "lonely" in msg:
             return echo(bot, update, "Lonely like island Ibiza", reply=True)
 
-        if "wtfock" in msg:
+        if "wtfock" in msg or "wtfrick" in msg:
             return send_sticker(bot, update, bot.get_sticker_set("Druckfamilyquotes").stickers[19], True)
 
         if "daddy" in msg:

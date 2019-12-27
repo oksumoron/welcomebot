@@ -405,7 +405,7 @@ USERS_AND_TIMEZONES = [{"id": 205459208, "name": "Kseniya", "tz": "Europe/Moscow
                         #{"id": 390886378, "name": "Rose", "tz": "Europe/Moscow"}, #+1
                         {"id": 938002879, "name": "blue", "tz": "Europe/Ljubljana", "congrats": False}, #+1
                         {"id": 877331016, "name": "Marijke", "tz": "Europe/Berlin", "congrats": False}, #+1
-                        {"id": 841877693, "name": "Sarah", "tz": "Australia/Melbourne", "congrats": False}, #+1
+                        {"id": 841877693, "name": "Sarah", "tz": "Australia/Melbourne", "congrats": False}, #+11
                         #{"id": 843009397, "name": "Franzi", "tz": "Europe/Berlin"}, #+1
 
                         {"id": 912600437, "name": "taru", "tz": "Europe/Helsinki", "congrats": False}, #+2
@@ -435,6 +435,19 @@ USERS_AND_TIMEZONES = [{"id": 205459208, "name": "Kseniya", "tz": "Europe/Moscow
 
 users_and = [{"id": 205459208, "name": "Kseniya", "tz": "Europe/Moscow", "congrats": False},
              {"id": 818120570, "name": "Maybe", "tz":"Europe/Bucharest"}]
+
+
+family_chat = -1001186177604
+test_chat = -313765365
+
+def send_test_chat_msg(bot, update):
+    send_async(bot, chat_id=test_chat, text='{}'.format(update.message.text.split(" ", 1)[1]))
+
+
+def send_family_chat_msg(bot, update):
+    send_async(bot, chat_id=family_chat, text='{}'.format(update.message.text.split(" ", 1)[1]))
+
+
 
 def set_users(bot, update):
     """ Unlocks the chat, so everyone can change settings """
@@ -489,7 +502,7 @@ def bis_bald(bot, update):
         msg = update.message.text.lower()
         characters = ["Jonas", "David", "Abdi", "Carlos", "Omar", "Essam", "Mohammed", "Stefan",
                       "Kiki", "Sam", "Alex", "Sara", "Leonie", "Laura", "Hans",
-                      "Linn", "Rentier"]
+                      "Linn", "Rentier", "Farid"]
         mains = ["Matteo", "Hanna", "Mia", "Amira"]
 
         if bot.name.lower() in msg and bot.name.lower() != msg:
@@ -702,9 +715,12 @@ def main():
     dp.add_handler(CommandHandler("quiet", quiet))
     dp.add_handler(CommandHandler("unquiet", unquiet))
     dp.add_handler(CommandHandler("setusers", set_users))
+    dp.add_handler(CommandHandler("sendtest", send_test_chat_msg))
+    dp.add_handler(CommandHandler("sendfamily", send_family_chat_msg))
 
     dp.add_handler(MessageHandler([Filters.status_update], empty_message))
     dp.add_handler(MessageHandler(Filters.group, bis_bald))
+
     #dp.add_handler(MessageHandler([Filters.text], stats))
 
     dp.add_error_handler(error)

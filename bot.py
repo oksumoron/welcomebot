@@ -377,38 +377,105 @@ def empty_message(bot, update):
             return goodbye(bot, update)
 
 
-USERS_AND_TIMEZONES = [{"id": 205459208, "name": "Kseniya", "tz": "Europe/Moscow"},
-                       {"id": 818120570, "name": "Maybe", "tz":"Europe/Bucharest"},
-                       {"id": 217474162, "name": "Stazyros", "tz": "Europe/Moscow"},
+USERS_AND_TIMEZONES = [{"id": 205459208, "name": "Kseniya", "tz": "Europe/Moscow", "congrats": False}, #+3
+                       #{"id": 818120570, "name": "Maybe", "tz":"Europe/Bucharest"}, #+2
+                       {"id": 217474162, "name": "Stazyros", "tz": "Europe/Moscow", "congrats": False}, # +3
+                       {"id": 750432187, "name": "Shakhnaz", "tz": "Asia/Krasnoyarsk", "congrats": False}, #+7
+                       {"id": 850842867, "name": "Olga", "tz": "Europe/Moscow", "congrats": False}, #+3
+                       {"id": 984037790, "name": "Julia", "tz": "Europe/Berlin", "congrats": False}, #+1
+                       {"id": 909049413, "name": "Angelika", "tz": "Europe/Warsaw", "congrats": False}, # +1
+                        {"id": 933314516, "name": "Nika", "tz": "Europe/Warsaw", "congrats": False}, # +1
+                       #{"id": 1052078964, "name": "ess", "tz": "Asia/Dubai"}, # +4
+                        {"id": 60815732, "name": "Söph", "tz": "Europe/Berlin", "congrats": False}, #+1
+                        {"id": 819800093, "name": "Lea", "tz": "Europe/Berlin", "congrats": False}, #+1
+                        {"id": 903096807, "name": "nadine", "tz": "Europe/Berlin", "congrats": False}, #+1
+                        {"id": 906207913, "name": "Flora", "tz": "Europe/Berlin", "congrats": False}, #+1
+                        {"id": 818329880, "name": "Michi", "tz": "Europe/Berlin", "congrats": False}, #+1
+                        {"id": 312356585, "name": "Lily", "tz": "Europe/Berlin", "congrats": False}, #+1
 
-                       #id: 750432187, name: Shakhnaz
-                       #id: 850842867, name: Olga
-                       #id: 984037790, name: Julia
-                       #id: 909049413, name: Angelika
-                       #id: 1052078964, name: ess
-                       # id: 60815732, name: Söph
-                       #id: 1032883707, name: Haven
-                       #id: 1065439413, name: t.b.p.f (Este)
-                       #id: 918544312, name: Allie
-                       # id: 865543531, name: Priscilla
-                       # id: 819800093, name: Lea
-                       #id: 933314516, name: Nika
-                       #id: 999159684, name: Steph
-                       #id: 843754913, name: Harper
-                       #id: 903096807, name: nadine (tirpse)
-                        #id: 234021809, name: A. B.
-                       #id: 986930541, name: Lou
-                       #id: 312356585, name: Lily
-                       #id: 443578761, name: Sveta
-                        #id: 390886378, name: Rose
-                       #id: 938002879, name: blue
-                       #id: 906207913, name: Flora
-                       #id: 818329880, name: Michi
-                       #id: 877331016, name: Marijke
-                       #id: 841877693, name: Sarah
-                       #id: 843009397, name: Franzi
-                     ]
+                        {"id": 1032883707, "name": "Haven", "tz": "America/Detroit", "congrats": False}, #-5
+                        {"id": 1065439413, "name": "t.b.p.f (Este)", "tz": "Europe/Rome", "congrats": False}, #+1
+                        {"id": 918544312, "name": "Allie", "tz": "Pacific/Auckland", "congrats": False}, #+13
+                        {"id": 865543531, "name": "Priscilla", "tz": "America/Cuiaba", "congrats": False}, #-4
+                        {"id": 999159684, "name": "Steph", "tz": "America/Detroit", "congrats": False}, #+1
+                        {"id": 843754913, "name": "Harper", "tz": "America/Menominee", "congrats": False}, #-6
+                        {"id": 234021809, "name": "A. B.", "tz": "Europe/Madrid", "congrats": False}, #+1
+                        {"id": 986930541, "name": "Lou", "tz": "Europe/Zurich", "congrats": False}, #+1
+                        {"id": 443578761, "name": "Sveta", "tz": "Europe/Moscow", "congrats": False}, #+2
+                        #{"id": 390886378, "name": "Rose", "tz": "Europe/Moscow"}, #+1
+                        {"id": 938002879, "name": "blue", "tz": "Europe/Ljubljana", "congrats": False}, #+1
+                        {"id": 877331016, "name": "Marijke", "tz": "Europe/Berlin", "congrats": False}, #+1
+                        {"id": 841877693, "name": "Sarah", "tz": "Australia/Melbourne", "congrats": False}, #+1
+                        #{"id": 843009397, "name": "Franzi", "tz": "Europe/Berlin"}, #+1
+
+                        {"id": 912600437, "name": "taru", "tz": "Europe/Helsinki", "congrats": False}, #+2
+
+                        {"id": 991666098, "name": "Philline", "tz": "Europe/Belin", "congrats": False}, #+1
+
+                        {"id": 972172724, "name": "Paula", "tz": "Europe/Belin", "congrats": False}, #+1
+                        {"id": 52136768, "name": "Ale", "tz": "Europe/Rome", "congrats": False}, #+1
+                        {"id": 1003023736, "name": "luna", "tz": "Europe/Rome", "congrats": False}, #+1
+                        {"id": 950621247, "name": "cassie", "tz": "America/Los_Angeles", "congrats": False}, #-8
+                        {"id": 901885283, "name": "sera", "tz": "America/New_York", "congrats": False}, #+1
+                        {"id": 967188191, "name": "teresa", "tz": "Europe/Berlin", "congrats": False}, #+1
+                        {"id": 712021173, "name": "Asya", "tz": "Europe/Moscow", "congrats": False}, #+3
+                        {"id": 885612343, "name": "Annabell", "tz": "Europe/Berlin", "congrats": False}, #+1
+                        {"id": 491155381, "name": "Helle", "tz": "Europe/Berlin", "congrats": False}, #+1
+#{"id": 1019771036, "name": "Ivy", "tz": "Europe/Moscow"}, #+3
+                        {"id": 781889525, "name": "A", "tz": "America/Los_Angeles", "congrats": False}, #-8
+
+
+
+                        #id: 845300114, name: Jone
+
+                       #id: 605725821, name: Andrea
+
+]
+
+
+users_and = [{"id": 205459208, "name": "Kseniya", "tz": "Europe/Moscow", "congrats": False},
+             {"id": 818120570, "name": "Maybe", "tz":"Europe/Bucharest"}]
+
+def set_users(bot, update):
+    """ Unlocks the chat, so everyone can change settings """
+    chat_id = update.message.chat.id
+
+    # Check admin privilege and group context
+    #if not check(bot, update):
+    #    return
+
+    # Unlock the bot for this chat
+    db.set('user_timezones', users_and)
+
+    send_async(bot, chat_id=chat_id, text='Got it!')
+
 import pytz
+#if not db.get('user_timezones'):
+#    db.set('user_timezones', [{"id": 205459208, "name": "Kseniya", "tz": "Europe/Moscow", "congrats": False},
+#                       {"id": 818120570, "name": "Maybe", "tz":"Europe/Bucharest", "congrats": False}, ])
+#db.set('user_timezones', [{"id": 205459208, "name": "Kseniya", "tz": "Europe/Moscow", "congrats": False},
+#                       {"id": 818120570, "name": "Maybe", "tz":"Europe/Bucharest", "congrats": False}, ])
+
+
+def timer(bot, update):
+    users = db.get("user_timezones")
+    ready_users = []
+    for us in users:
+            # datetime(2019, 12, 22, 18, 25, tzinfo=timezone.utc)
+        tz = pytz.timezone(us["tz"])
+        need = datetime(2019, 12, 27, 17, 30, tzinfo=tz).strftime("%d.%m.%Y %H:%M")
+        current = datetime.now(tz).strftime("%d.%m.%Y %H:%M")
+        if need <= current:
+            logger.info("got it")
+            if us["congrats"] is False:
+                ready_users.append(us)
+                us["congrats"] = True
+    if len(ready_users) > 0:
+        db.set('user_timezones', users)
+        return congrats(bot, update, "{}, test!", ready_users)
+    pass
+
+
 def bis_bald(bot, update):
     chats = db.get('chats')
     if update.message.chat.id not in chats:
@@ -416,17 +483,7 @@ def bis_bald(bot, update):
         db.set('chats', chats)
         logger.info("I have been added to %d chats" % len(chats))
     logger.info("id: {}, name: {}".format(update.message.from_user.id, update.message.from_user.first_name))
-    """users = []
-    for us in USERS_AND_TIMEZONES:
-        # datetime(2019, 12, 22, 18, 25, tzinfo=timezone.utc)
-        tz = pytz.timezone(USERS_AND_TIMEZONES[us][1])
-        need = datetime(2019, 12, 22, 22, 20, tzinfo=timezone.utc).strftime("%d.%m.%Y %H:%M")
-        current = datetime.now(tz).strftime("%d.%m.%Y %H:%M")
-        if need <= current:
-            logger.info("got it")
-            users.append(us)
-    if len(users) >= 0:
-        return congrats(bot, update, "{}, test!", users)"""
+    #timer(bot, update)
 
     if update.message.text is not None:
         msg = update.message.text.lower()
@@ -434,33 +491,24 @@ def bis_bald(bot, update):
                       "Kiki", "Sam", "Alex", "Sara", "Leonie", "Laura", "Hans",
                       "Linn", "Rentier"]
         mains = ["Matteo", "Hanna", "Mia", "Amira"]
-        date_from = datetime(2020, 6, 22, 13, 0, tzinfo=timezone.utc)
-        if bot.name.lower() in msg and ("days till" in msg or "days until" in msg) and ("druck" in msg or "season 5" in msg):
-            date_now = datetime.now(tz=timezone.utc)
-            days = (date_from - date_now).days
-            return echo(bot, update, "Days until druck: {}".format(days))
 
-        if bot.name.lower() in msg and "coffee" in msg:
-            photo = join(dirname(realpath(__file__)), "resources", "photos", "rentier_coffee.jpg")
-            bot.send_photo(update.message.chat.id, open(photo, 'rb'), "Here!",
-                           reply_to_message=update.message.message_id)
+        if bot.name.lower() in msg and bot.name.lower() != msg:
+            return at_handler(bot, update)
+
         if "bis" in msg and "bald" in msg:
             msgs = [emojize("Bis bald you back, {} :red_heart:"), #"Bis bald you too, {}", emojize("I heard someone said bis bald? :clown_face:"),
                     #emojize("{}, bis bald is forbidden in this chat! :angry_face:"),
                     emojize("{}, :police_car_light:")]
             return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])
         if "sommer 2020" in msg or "summer 2020" in msg:
-            msgs = ["{}, can summer come already?!", #emojize("I heard someone said bis bald? :clown_face:"),
+            msgs = ["{}, can summer come already?!",
                     emojize("Summer 2020? Can't wait! :smiling_face_with_smiling_eyes:"),
-                    #emojize("{}, bis bald is forbidden in this chat! :angry_face:"),
                    emojize("{}, :police_car_light: :police_car_light: :police_car_light:")]
             return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])
         if "season 5" in msg or "s5" in msg:
             msgs = ["{} FOR SEASON 5!!!".format(characters[random.randint(0, len(characters) - 1)]).upper(),
                     emojize("YAAAY season 5! :partying_face:"),
                     "Season 5... Imagine...",
-                   # emojize("Season 5? I can smell it :clown_face:"),
-                   # "{}, are you sure?",
                    emojize("Knowledge is so much more valuable than weed, more valuable than haze, even more than unbelievably strong DMT... But I don't know who will be season 5 main :sad_but_relieved_face:")
                    ]
             return echo(bot, update, msgs[random.randint(0, len(msgs) - 1)])
@@ -519,13 +567,48 @@ def bis_bald(bot, update):
 
         if update.message.reply_to_message is not None:
             if update.message.reply_to_message.from_user.id == bot.id:
-                if "coffee" in update.message.reply_to_message.text.lower() and "yes" in update.message.text.lower():
-                    photo = join(dirname(realpath(__file__)), "resources", "photos", "rentier_coffee.jpg")
-                    bot.send_photo(update.message.chat.id, open(photo, 'rb'), "Here!", reply_to_message=update.message.message_id)
-                if "coffee" in update.message.reply_to_message.text.lower() and "no" in update.message.text.lower():
-                    return echo(bot, update, 'Okay, maybe some tea then?', reply=True)
+                if "coffee" in update.message.reply_to_message.text.lower():
+                    return coffee_reply(bot, update)
 
-                    #send_photo(chat_id, photo, caption=None, disable_notification=False, reply_to_message_id=None, reply_markup=None, timeout=20, parse_mode=None, **kwargs)
+
+def coffee_reply(bot, update):
+    if "yes" in update.message.text.lower():
+        return send_photo(bot, update, "rentier_coffee.jpg", "Here!", reply=True)
+    if "no" in update.message.text.lower():
+        return echo(bot, update, 'Okay, maybe some tea then?', reply=True)
+
+
+def send_photo(bot, update, photo, caption, reply=False):
+    f = join(dirname(realpath(__file__)), "resources", "photos", photo)
+    if reply:
+        bot.send_photo(update.message.chat.id, open(f, 'rb'), caption, reply_to_message=update.message.message_id)
+    else:
+        bot.send_photo(update.message.chat.id, open(f, 'rb'), caption)
+
+def at_handler(bot, update):
+    msg = update.message.text.lower()
+    if bot.name.lower() in msg and "coffee" in msg:
+        photo = join(dirname(realpath(__file__)), "resources", "photos", "rentier_coffee.jpg")
+        return bot.send_photo(update.message.chat.id, open(photo, 'rb'), "Here!",
+                       reply_to_message=update.message.message_id)
+
+    if bot.name.lower() in msg and ("days till" in msg or "days until" in msg) and (
+            "druck" in msg or "season 5" in msg):
+        date_from = datetime(2020, 6, 22, 13, 0, tzinfo=timezone.utc)
+        date_now = datetime.now(tz=timezone.utc)
+        days = (date_from - date_now).days
+        return echo(bot, update, "Days until druck: {}".format(days))
+
+    if bot.name.lower() in msg and "shakshuka" in msg:
+        photo = join(dirname(realpath(__file__)), "resources", "photos", "shakshuka.jpg")
+        return bot.send_photo(update.message.chat.id, open(photo, 'rb'), "Bon Appetit!",
+                              reply_to_message=update.message.message_id)
+
+    if bot.name.lower() in msg and "sandwich" in msg:
+        photo = join(dirname(realpath(__file__)), "resources", "photos", "sandwiches.jpg")
+        return bot.send_photo(update.message.chat.id, open(photo, 'rb'), "Here!",
+                              reply_to_message=update.message.message_id)
+
 
 
 def echo(bot, update, msg, reply=False):
@@ -558,7 +641,7 @@ def congrats(bot, update, msg, users):
     # Replace placeholders and send message
     dmslckm = []
     for user in users:
-        dmslckm.append('<a href="tg://user?id={}">{}</a>'.format(user, USERS_AND_TIMEZONES[user][0]))
+        dmslckm.append('<a href="tg://user?id={}">{}</a>'.format(user["id"], user["name"]))
     text = msg.format(", ".join(dmslckm))
     send_async(bot, chat_id=chat_id, text=text, parse_mode=ParseMode.HTML)
 
@@ -618,6 +701,7 @@ def main():
     dp.add_handler(CommandHandler("unlock", unlock))
     dp.add_handler(CommandHandler("quiet", quiet))
     dp.add_handler(CommandHandler("unquiet", unquiet))
+    dp.add_handler(CommandHandler("setusers", set_users))
 
     dp.add_handler(MessageHandler([Filters.status_update], empty_message))
     dp.add_handler(MessageHandler(Filters.group, bis_bald))

@@ -518,18 +518,13 @@ def bis_bald(bot, update):
                     emojize("Summer 2020? Can't wait! :smiling_face_with_smiling_eyes:"),
                    emojize("{}, :police_car_light: :police_car_light: :police_car_light:")]
             return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])
-        if "season 5" in msg or "s5" in msg:
-            msgs = ["{} FOR SEASON 5!!!".format(characters[random.randint(0, len(characters) - 1)]).upper(),
-                    emojize("YAAAY season 5! :partying_face:"),
-                    "Season 5... Imagine...",
-                   emojize("Knowledge is so much more valuable than weed, more valuable than haze, even more than unbelievably strong DMT... But I don't know who will be season 5 main :sad_but_relieved_face:")
-                   ]
-            return echo(bot, update, msgs[random.randint(0, len(msgs) - 1)])
-        if "new gen" in msg or "new generation" in msg:
-            msgs = ["{}, fingers crossed",
-                    "Noooo, no new generations!",
-                    "I would give new gen a chance"]
-            return echo(bot, update, msgs[random.randint(0, len(msgs) - 1)])
+       # if "season 5" in msg or "s5" in msg:
+       #     msgs = ["{} FOR SEASON 5!!!".format(characters[random.randint(0, len(characters) - 1)]).upper(),
+       #             emojize("YAAAY season 5! :partying_face:"),
+       #             "Season 5... Imagine...",
+       #            emojize("Knowledge is so much more valuable than weed, more valuable than haze, even more than unbelievably strong DMT... But I don't know who will be season 5 main :sad_but_relieved_face:")
+       #            ]
+       #     return echo(bot, update, msgs[random.randint(0, len(msgs) - 1)])
         if "sad" in msg or "traurigkeit" in msg:
             msgs = ['Who said "sad"? I\'m calling positive police! <a href="tg://user?id={}">{}</a>'.format(818120570, "Maybe"),
                     emojize("Wee woo wee woo! :oncoming_police_car:"),

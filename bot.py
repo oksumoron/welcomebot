@@ -32,7 +32,7 @@ BOTAN_TOKEN = 'BOTANTOKEN'
 
 #REQUEST_KWARGS={
     # "USERNAME:PASSWORD@" is optional, if you need authentication:
-    #'proxy_url': 'https://136.243.14.107:8090',
+#    'proxy_url': 'https://173.249.42.83:3128',
 #}
 #https://173.249.42.83:3128
 #https://136.243.14.107:8090
@@ -385,60 +385,65 @@ USERS_AND_TIMEZONES = [{"id": 205459208, "name": "Kseniya", "tz": "Europe/Moscow
                        {"id": 984037790, "name": "Julia", "tz": "Europe/Berlin", "congrats": False}, #+1
                        {"id": 909049413, "name": "Angelika", "tz": "Europe/Warsaw", "congrats": False}, # +1
                         {"id": 933314516, "name": "Nika", "tz": "Europe/Warsaw", "congrats": False}, # +1
-                       #{"id": 1052078964, "name": "ess", "tz": "Asia/Dubai"}, # +4
+                        {"id": 1052078964, "name": "ess", "tz": "Asia/Dubai", "congrats": False}, # +4
                         {"id": 60815732, "name": "Söph", "tz": "Europe/Berlin", "congrats": False}, #+1
                         {"id": 819800093, "name": "Lea", "tz": "Europe/Berlin", "congrats": False}, #+1
                         {"id": 903096807, "name": "nadine", "tz": "Europe/Berlin", "congrats": False}, #+1
                         {"id": 906207913, "name": "Flora", "tz": "Europe/Berlin", "congrats": False}, #+1
                         {"id": 818329880, "name": "Michi", "tz": "Europe/Berlin", "congrats": False}, #+1
                         {"id": 312356585, "name": "Lily", "tz": "Europe/Berlin", "congrats": False}, #+1
-
                         {"id": 1032883707, "name": "Haven", "tz": "America/Detroit", "congrats": False}, #-5
                         {"id": 1065439413, "name": "t.b.p.f (Este)", "tz": "Europe/Rome", "congrats": False}, #+1
                         {"id": 918544312, "name": "Allie", "tz": "Pacific/Auckland", "congrats": False}, #+13
-                        {"id": 865543531, "name": "Priscilla", "tz": "America/Cuiaba", "congrats": False}, #-4
+                        {"id": 865543531, "name": "Priscilla", "tz": "America/Manaus", "congrats": False}, #-4
                         {"id": 999159684, "name": "Steph", "tz": "America/Detroit", "congrats": False}, #+1
                         {"id": 843754913, "name": "Harper", "tz": "America/Menominee", "congrats": False}, #-6
                         {"id": 234021809, "name": "A. B.", "tz": "Europe/Madrid", "congrats": False}, #+1
                         {"id": 986930541, "name": "Lou", "tz": "Europe/Zurich", "congrats": False}, #+1
                         {"id": 443578761, "name": "Sveta", "tz": "Europe/Moscow", "congrats": False}, #+2
-                        #{"id": 390886378, "name": "Rose", "tz": "Europe/Moscow"}, #+1
                         {"id": 938002879, "name": "blue", "tz": "Europe/Ljubljana", "congrats": False}, #+1
                         {"id": 877331016, "name": "Marijke", "tz": "Europe/Berlin", "congrats": False}, #+1
                         {"id": 841877693, "name": "Sarah", "tz": "Australia/Melbourne", "congrats": False}, #+11
-                        #{"id": 843009397, "name": "Franzi", "tz": "Europe/Berlin"}, #+1
-
+                        {"id": 843009397, "name": "Franzi", "tz": "Europe/Berlin", "congrats": False}, #+1
                         {"id": 912600437, "name": "taru", "tz": "Europe/Helsinki", "congrats": False}, #+2
-
-                        {"id": 991666098, "name": "Philline", "tz": "Europe/Belin", "congrats": False}, #+1
-
-                        {"id": 972172724, "name": "Paula", "tz": "Europe/Belin", "congrats": False}, #+1
+                        {"id": 991666098, "name": "Philline", "tz": "Europe/Berlin", "congrats": False}, #+1
+                        {"id": 972172724, "name": "Paula", "tz": "Europe/Berlin", "congrats": False}, #+1
                         {"id": 52136768, "name": "Ale", "tz": "Europe/Rome", "congrats": False}, #+1
                         {"id": 1003023736, "name": "luna", "tz": "Europe/Rome", "congrats": False}, #+1
                         {"id": 950621247, "name": "cassie", "tz": "America/Los_Angeles", "congrats": False}, #-8
                         {"id": 901885283, "name": "sera", "tz": "America/New_York", "congrats": False}, #+1
                         {"id": 967188191, "name": "teresa", "tz": "Europe/Berlin", "congrats": False}, #+1
                         {"id": 712021173, "name": "Asya", "tz": "Europe/Moscow", "congrats": False}, #+3
+                        {"id": 103238867, "name": "Ira", "tz": "Europe/Moscow", "congrats": False}, #+3
                         {"id": 885612343, "name": "Annabell", "tz": "Europe/Berlin", "congrats": False}, #+1
+                        {"id": 296825310, "name": "Nina", "tz": "Europe/Berlin", "congrats": False}, #+1
                         {"id": 491155381, "name": "Helle", "tz": "Europe/Berlin", "congrats": False}, #+1
-#{"id": 1019771036, "name": "Ivy", "tz": "Europe/Moscow"}, #+3
                         {"id": 781889525, "name": "A", "tz": "America/Los_Angeles", "congrats": False}, #-8
+                        {"id": 557806090, "name": "Asher", "tz": "Europe/London", "congrats": False}, # +0
 
-
-
-                        #id: 845300114, name: Jone
-
-                       #id: 605725821, name: Andrea
 
 ]
 
-
-users_and = [{"id": 205459208, "name": "Kseniya", "tz": "Europe/Moscow", "congrats": False},
-             {"id": 818120570, "name": "Maybe", "tz":"Europe/Bucharest"}]
+congrats_mgs = [{"msg": "My dear {}, 2020 has already come in your timezone! Yaaay! :partying_face: May this year bring new inspirations and a lot of happiness! Happy New Year!", "sent": False},
+                {"msg": "{}, 2020 is coming to your timezone and I hope it will be the best year in your life! Happy New Year! :partying_face:", "sent": False},
+                {"msg": "My lovely {} :red_heart:! Wishing you a Happy New Year with the hope that you will have many blessings in the year to come.", "sent": False},
+                {"msg": "{}, Happy New Year! :green_heart: May this year bring new happiness, new goals, new achievements and a lot of new inspirations on your life. Wishing you a year fully loaded with happiness.", "sent": False},
+                {"msg": "Dear {}! May the new year bring you warmth, love and light to guide your path to a positive destination. Here’s wishing you all the joy of the season. Have a Happy New Year! :partying_face:", "sent": False},
+                {"msg": "{}! Wishing you a year that’s promising, exciting, inspiring and full of fun! Happy New Year! :yellow_heart:", "sent": False},
+                {"msg": "{}! May your 2020 arrive with hope and a bag full of blessings. Have a prosperous and healthy New Year! :red_heart:", "sent": False},
+                {"msg": "My darling {} :blue_heart:! Wishing you a year that’s promising, exciting, inspiring and full of fun! Happy New Year!", "sent": False},
+                {"msg": "{}! It's 2020 in your house! Wishing you a new year rich with lost of love, joy, warmth, and laughter.", "sent": False},
+                {"msg": "My lovely {}! :orange_heart: Cheers to a new year and a fond farewell to the old. May you have a prosperous and healthy New Year!", "sent": False},
+                {"msg": "May 2020 bring you much joy and fun :partying_face: May you find peace, love and success. Sending my heartiest new year wish for you, {}!", "sent": False},
+                {"msg": "{}, your turn! :purple_heart: Make your 2020 a blast of fun, full of cheer and warm greetings for everyone! Happy New Year!", "sent": False},
+                {"msg": "Dear {}, I wish you happy New Year :green_heart:! I have a feeling 2020 is going to be a great year! Let's begin to plan new beginnings with renewed hope in the countless possibilities of the future!", "sent": False},
+                {"msg": "My lovely {}! :red_heart: Wishing you all the best for the coming year, with love and positive thoughts!", "sent": False},
+                ]
 
 
 family_chat = -1001186177604
 test_chat = -313765365
+
 
 def send_test_chat_msg(bot, update):
     send_async(bot, chat_id=test_chat, text='{}'.format(update.message.text.split(" ", 1)[1]))
@@ -448,35 +453,23 @@ def send_family_chat_msg(bot, update):
     send_async(bot, chat_id=family_chat, text='{}'.format(update.message.text.split(" ", 1)[1]))
 
 
-
 def set_users(bot, update):
     """ Unlocks the chat, so everyone can change settings """
     chat_id = update.message.chat.id
-
-    # Check admin privilege and group context
-    #if not check(bot, update):
-    #    return
-
-    # Unlock the bot for this chat
-    db.set('user_timezones', users_and)
+    db.set('user_timezones', USERS_AND_TIMEZONES)
+    db.set("congrats_msgs", congrats_mgs)
 
     send_async(bot, chat_id=chat_id, text='Got it!')
 
 import pytz
-#if not db.get('user_timezones'):
-#    db.set('user_timezones', [{"id": 205459208, "name": "Kseniya", "tz": "Europe/Moscow", "congrats": False},
-#                       {"id": 818120570, "name": "Maybe", "tz":"Europe/Bucharest", "congrats": False}, ])
-#db.set('user_timezones', [{"id": 205459208, "name": "Kseniya", "tz": "Europe/Moscow", "congrats": False},
-#                       {"id": 818120570, "name": "Maybe", "tz":"Europe/Bucharest", "congrats": False}, ])
-
-
 def timer(bot, update):
     users = db.get("user_timezones")
+    congrats_ms = db.get("congrats_msgs")
+    con = ""
     ready_users = []
     for us in users:
-            # datetime(2019, 12, 22, 18, 25, tzinfo=timezone.utc)
         tz = pytz.timezone(us["tz"])
-        need = datetime(2019, 12, 27, 17, 30, tzinfo=tz).strftime("%d.%m.%Y %H:%M")
+        need = datetime(2019, 12, 1, 0, 0, tzinfo=tz).strftime("%d.%m.%Y %H:%M")
         current = datetime.now(tz).strftime("%d.%m.%Y %H:%M")
         if need <= current:
             logger.info("got it")
@@ -485,8 +478,12 @@ def timer(bot, update):
                 us["congrats"] = True
     if len(ready_users) > 0:
         db.set('user_timezones', users)
-        return congrats(bot, update, "{}, test!", ready_users)
-    pass
+        for msgs in congrats_ms:
+            if msgs["sent"] is False:
+                con = msgs["msg"]
+                msgs["sent"] = True
+                db.set("congrats_msgs", congrats_ms)
+                return congrats(bot, update, con, ready_users)
 
 
 def bis_bald(bot, update):
@@ -496,7 +493,7 @@ def bis_bald(bot, update):
         db.set('chats', chats)
         logger.info("I have been added to %d chats" % len(chats))
     logger.info("id: {}, name: {}".format(update.message.from_user.id, update.message.from_user.first_name))
-    #timer(bot, update)
+    timer(bot, update)
 
     if update.message.text is not None:
         msg = update.message.text.lower()
@@ -509,8 +506,7 @@ def bis_bald(bot, update):
             return at_handler(bot, update)
 
         if "bis" in msg and "bald" in msg:
-            msgs = [emojize("Bis bald you back, {} :red_heart:"), #"Bis bald you too, {}", emojize("I heard someone said bis bald? :clown_face:"),
-                    #emojize("{}, bis bald is forbidden in this chat! :angry_face:"),
+            msgs = [emojize("Bis bald you back, {} :red_heart:"),
                     emojize("{}, :police_car_light:")]
             return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])
         if "sommer 2020" in msg or "summer 2020" in msg:
@@ -518,13 +514,6 @@ def bis_bald(bot, update):
                     emojize("Summer 2020? Can't wait! :smiling_face_with_smiling_eyes:"),
                    emojize("{}, :police_car_light: :police_car_light: :police_car_light:")]
             return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])
-       # if "season 5" in msg or "s5" in msg:
-       #     msgs = ["{} FOR SEASON 5!!!".format(characters[random.randint(0, len(characters) - 1)]).upper(),
-       #             emojize("YAAAY season 5! :partying_face:"),
-       #             "Season 5... Imagine...",
-       #            emojize("Knowledge is so much more valuable than weed, more valuable than haze, even more than unbelievably strong DMT... But I don't know who will be season 5 main :sad_but_relieved_face:")
-       #            ]
-       #     return echo(bot, update, msgs[random.randint(0, len(msgs) - 1)])
         if "sad" in msg or "traurigkeit" in msg:
             msgs = ['Who said "sad"? I\'m calling positive police! <a href="tg://user?id={}">{}</a>'.format(818120570, "Maybe"),
                     emojize("Wee woo wee woo! :oncoming_police_car:"),
@@ -650,7 +639,8 @@ def congrats(bot, update, msg, users):
     dmslckm = []
     for user in users:
         dmslckm.append('<a href="tg://user?id={}">{}</a>'.format(user["id"], user["name"]))
-    text = msg.format(", ".join(dmslckm))
+        #dmslckm.append('{}'.format( user["name"]))
+    text = emojize(msg.format(", ".join(dmslckm)))
     send_async(bot, chat_id=chat_id, text=text, parse_mode=ParseMode.HTML)
 
 

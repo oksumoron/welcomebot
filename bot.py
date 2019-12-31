@@ -472,6 +472,7 @@ def timer(bot, update):
         need = datetime(2020, 1, 1, 0, 1, tzinfo=tz)
         current = datetime.now(tz)
         logger.info("need {} current {} user {}".format(need, current, us["name"]))
+        logger.info("need <= current {}".format(need <= current))
         if need <= current:
             logger.info("got it")
             if us["congrats"] is False:

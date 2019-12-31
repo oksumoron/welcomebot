@@ -469,8 +469,8 @@ def timer(bot, update):
     ready_users = []
     for us in users:
         tz = pytz.timezone(us["tz"])
-        need = datetime(2020, 1, 1, 0, 1, tzinfo=tz)
-        current = datetime.now(tz)
+        need = datetime(2020, 1, 1, 0, 1, tzinfo=tz).strftime("%Y-%m-%d %H:%M")
+        current = datetime.now(tz).strftime("%Y-%m-%d %H:%M")
         logger.info("need {} current {} user {}".format(need, current, us["name"]))
         logger.info("need <= current {}".format(need <= current))
         if need <= current:

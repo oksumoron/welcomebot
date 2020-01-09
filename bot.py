@@ -382,11 +382,15 @@ test_chat = -313765365
 
 
 def send_test_chat_msg(bot, update):
-    send_async(bot, chat_id=test_chat, text='{}'.format(update.message.text.split(" ", 1)[1]))
+    chat_id = update.message.chat_id
+    if chat_id > 0:
+        send_async(bot, chat_id=test_chat, text='{}'.format(update.message.text.split(" ", 1)[1]))
 
 
 def send_family_chat_msg(bot, update):
-    send_async(bot, chat_id=family_chat, text='{}'.format(update.message.text.split(" ", 1)[1]))
+    chat_id = update.message.chat_id
+    if chat_id > 0:
+        send_async(bot, chat_id=family_chat, text='{}'.format(update.message.text.split(" ", 1)[1]))
 
 
 def bis_bald(bot, update):

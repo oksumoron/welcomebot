@@ -1,0 +1,1 @@
+release: python3 bot.py

@@ -438,6 +438,21 @@ def bis_bald(bot, update):
         if "lonely" in msg:
             return echo(bot, update, "Lonely like island Ibiza", reply=True)
 
+        if "hollandaise" in msg and "pizza" in msg:
+            return echo(bot, update, "{}, I want a pizza margherita with extra tzatziki", reply=True)
+
+        if "pineapple pizza" in msg or "mint chocolate" in msg or "toast hawaii" in msg:
+            msgs = [emojize('Oh nooo, no food debates!'),
+                    "Here we go again",
+                    "{}, food discussions are important but first, let me make some tea"]
+            return echo(bot, update, msgs[random.randint(0, len(msgs) - 1)])
+
+        if "hawaii toast" in msg or "hawaii sandwich" in msg:
+            return send_photo(bot, update, "hawaii.jpg", caption=";)", reply=True)
+
+        if "food discussion" in msg or "food debate" in msg or "here we go again" in msg:
+            return send_photo(bot, update, "gta.jpg", caption="", reply=True)
+
         #if "wtfock" in msg or "wtfrick" in msg:
         #    return send_sticker(bot, update, bot.get_sticker_set("Druckfamilyquotes").stickers[19], True)
 

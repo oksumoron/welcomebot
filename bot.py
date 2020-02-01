@@ -421,9 +421,15 @@ def bis_bald(bot, update):
                    emojize("{}, :police_car_light: :police_car_light: :police_car_light:")]
             return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])
         if "sad" in msg or "traurigkeit" in msg:
-            msgs = ['Who said "sad"? I\'m calling positive police! <a href="tg://user?id={}">{}</a>'.format(818120570, "Maybe"),
+            msgs = ['Who said "sad"? I\'m calling positive police! <a href="tg://user?id={}">{}</a>',
                     emojize("Wee woo wee woo! :oncoming_police_car:"),
-                    "{}, this is the positive police, we don't use word \"sad\" in this chat"]
+                    "{}, this is the positive police, we don't use word \"sad\" in this chat",
+                    "{}, sad spelled backwards is das and das not good."]
+            return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])
+        if "s a d" in msg:
+            msgs = [emojize('{}, are you trying to mask word sad? :thinking_face:'),
+                    emojize("{}, I see what you're trying to do :eyes:"),
+                    "{}, nice try"]
             return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])
         if "family" in msg and "chat" in msg:
             msgs = [emojize('That\'s right, we\'re all family here :red_heart:')]

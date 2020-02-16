@@ -30,10 +30,10 @@ BOTNAME = get_settings("Bot", "name")
 TOKEN = get_settings("Bot", "token")
 BOTAN_TOKEN = 'BOTANTOKEN'
 
-#REQUEST_KWARGS={
+REQUEST_KWARGS={
     # "USERNAME:PASSWORD@" is optional, if you need authentication:
-#    'proxy_url': 'https://173.249.42.83:3128',
-#}
+    'proxy_url': 'http://51.158.123.35:8811',
+}
 #https://173.249.42.83:3128
 #https://136.243.14.107:8090
 #http://207.154.231.212:1080
@@ -426,7 +426,7 @@ def bis_bald(bot, update):
                     "{}, this is the positive police, we don't use word \"sad\" in this chat",
                     "{}, sad spelled backwards is das and das not good."]
             return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])
-        if "s a d" in msg:
+        if " s a d " in msg or " s*d " in msg:
             msgs = [emojize('{}, are you trying to mask word sad? :thinking_face:'),
                     emojize("{}, I see what you're trying to do :eyes:"),
                     "{}, nice try"]
@@ -581,8 +581,8 @@ def error(bot, update, error, **kwargs):
 
 def main():
     # Create the Updater and pass it your bot's token.
-    #updater = Updater(TOKEN, workers=10, request_kwargs=REQUEST_KWARGS)
-    updater = Updater(TOKEN, workers=10)
+    updater = Updater(TOKEN, workers=10, request_kwargs=REQUEST_KWARGS)
+    #updater = Updater(TOKEN, workers=10)
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher

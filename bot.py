@@ -581,8 +581,8 @@ def error(bot, update, error, **kwargs):
 
 def main():
     # Create the Updater and pass it your bot's token.
-    updater = Updater(TOKEN, workers=10, request_kwargs=REQUEST_KWARGS)
-    #updater = Updater(TOKEN, workers=10)
+    #updater = Updater(TOKEN, workers=10, request_kwargs=REQUEST_KWARGS)
+    updater = Updater(TOKEN, workers=10)
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher

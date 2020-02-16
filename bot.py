@@ -426,7 +426,7 @@ def bis_bald(bot, update):
                     "{}, this is the positive police, we don't use word \"sad\" in this chat",
                     "{}, sad spelled backwards is das and das not good."]
             return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])
-        if " s a d " in msg or " s*d " in msg:
+        if " s a d " in msg or "s*d" in msg or "s a d" == msg:
             msgs = [emojize('{}, are you trying to mask word sad? :thinking_face:'),
                     emojize("{}, I see what you're trying to do :eyes:"),
                     "{}, nice try"]

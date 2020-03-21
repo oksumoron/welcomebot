@@ -420,7 +420,7 @@ def bis_bald(bot, update):
                     emojize("Summer 2020? Can't wait! :smiling_face_with_smiling_eyes:"),
                    emojize("{}, :police_car_light: :police_car_light: :police_car_light:")]
             return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])
-        if "sad" in msg or "traurigkeit" in msg:
+        """if "sad" in msg or "traurigkeit" in msg:
             msgs = ['Who said "sad"? I\'m calling positive police! <a href="tg://user?id={}">{}</a>',
                     emojize("Wee woo wee woo! :oncoming_police_car:"),
                     "{}, this is the positive police, we don't use word \"sad\" in this chat",
@@ -430,7 +430,7 @@ def bis_bald(bot, update):
             msgs = [emojize('{}, are you trying to mask word sad? :thinking_face:'),
                     emojize("{}, I see what you're trying to do :eyes:"),
                     "{}, nice try"]
-            return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])
+            return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])"""
         if "family" in msg and "chat" in msg:
             msgs = [emojize('That\'s right, we\'re all family here :red_heart:')]
             return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])
@@ -531,6 +531,21 @@ def at_handler(bot, update):
     if bot.name.lower() in msg and "sandwich" in msg:
         photo = join(dirname(realpath(__file__)), "resources", "photos", "sandwiches.jpg")
         return bot.send_photo(update.message.chat.id, open(photo, 'rb'), "Here!",
+                              reply_to_message=update.message.message_id)
+
+    if bot.name.lower() in msg and "pancake" in msg:
+        photo = join(dirname(realpath(__file__)), "resources", "photos", "pancake.jpg")
+        return bot.send_photo(update.message.chat.id, open(photo, 'rb'), ";)",
+                              reply_to_message=update.message.message_id)
+
+    if bot.name.lower() in msg and " cake" in msg:
+        photo = join(dirname(realpath(__file__)), "resources", "photos", "cake.jpg")
+        return bot.send_photo(update.message.chat.id, open(photo, 'rb'), ";)",
+                              reply_to_message=update.message.message_id)
+
+    if bot.name.lower() in msg and "muffin" in msg:
+        photo = join(dirname(realpath(__file__)), "resources", "photos", "muffins.jpg")
+        return bot.send_photo(update.message.chat.id, open(photo, 'rb'), ";)",
                               reply_to_message=update.message.message_id)
 
 

@@ -412,14 +412,14 @@ def bis_bald(bot, update):
             return at_handler(bot, update)
 
         if "bis" in msg and "bald" in msg:
-            msgs = [emojize("Bis bald you back, {} :red_heart:"),
-                    emojize("{}, :police_car_light:")]
+            msgs = [emojize("Bis bald :red_heart:")]
+                    #emojize("{}, :police_car_light:")]
             return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])
-        if "sommer 2020" in msg or "summer 2020" in msg:
+        """if "sommer 2020" in msg or "summer 2020" in msg:
             msgs = ["{}, can summer come already?!",
                     emojize("Summer 2020? Can't wait! :smiling_face_with_smiling_eyes:"),
                    emojize("{}, :police_car_light: :police_car_light: :police_car_light:")]
-            return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])
+            return echo(bot, update, msgs[random.randint(0, len(msgs)-1)])"""
         """if "sad" in msg or "traurigkeit" in msg:
             msgs = ['Who said "sad"? I\'m calling positive police! <a href="tg://user?id={}">{}</a>',
                     emojize("Wee woo wee woo! :oncoming_police_car:"),

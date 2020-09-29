@@ -494,6 +494,12 @@ def bis_bald(bot, update):
                 if "coffee" in update.message.reply_to_message.text.lower():
                     return coffee_reply(bot, update)
 
+        if "constantin" in msg:
+            consti = ["Constantpain", "Constantshit", "Constantmood", "Constantinople", "Constipation",
+                      "Cantstandhim", "Constandick", "Nora's evil twin", "Constellation"]
+            msgs = [emojize('Constantin? 🤔 Did you mean {}'.format(consti[random.randint(0, len(consti) - 1)]))]
+            return echo(bot, update, msgs[random.randint(0, len(msgs) - 1)], reply=True)
+
 
 def coffee_reply(bot, update):
     if "yes" in update.message.text.lower():

@@ -401,6 +401,10 @@ def bis_bald(bot, update):
         logger.info("I have been added to %d chats" % len(chats))
     logger.info("id: {}, name: {}".format(update.message.from_user.id, update.message.from_user.first_name))
 
+    if update.message.sticker is not None:
+        if update.message.sticker.set_name == "SweetyBee" and update.message.sticker.emoji == "😏":
+            return send_sticker(bot, update, bot.get_sticker_set("covid2019byhro").stickers[0], True)
+
     if update.message.text is not None:
         msg = update.message.text.lower()
         characters = ["Jonas", "David", "Abdi", "Carlos", "Omar", "Essam", "Mohammed", "Stefan",
@@ -499,6 +503,7 @@ def bis_bald(bot, update):
                       "Cantstandhim", "Constandick", "Nora's evil twin", "Constellation"]
             msgs = [emojize('Constantin? 🤔 Did you mean {}'.format(consti[random.randint(0, len(consti) - 1)]))]
             return echo(bot, update, msgs[random.randint(0, len(msgs) - 1)], reply=True)
+
 
 
 def coffee_reply(bot, update):
